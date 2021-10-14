@@ -18,8 +18,39 @@ const { NotImplementedError } = require('../extensions/index.js');
  *   this.next = null;
  * }
  */
+/*
+ const originalLogFunction = console.log;
+ let output;
+ beforeEach(function(done) {
+   output = '';
+   console.log = (msg) => {
+     output += msg + '\n';
+   };
+ });
+ afterEach(function() {
+   console.log = originalLogFunction; // undo dummy log function
+   if (this.currentTest.state === 'failed') {
+     console.log(output);
+   }
+ });
+*/
 
-module.exports = function removeKFromList(/* l, k */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+
+
+function linkedList(arr){
+  return arr.reduceRight((next, value) => ({value, next}), null);
+}
+
+module.exports = function removeKFromList( l, k ) {
+  const nodes = [];
+
+  let tmp = l;
+  while (tmp) {
+   if(tmp.value!==k){
+   nodes.push(tmp.value);
+   }
+     tmp = tmp.next;
+   }
+  console.log('Lit=',nodes);
+  return linkedList(nodes);
 }
